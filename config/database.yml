@@ -1,0 +1,31 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  pool: 100
+  database: <%= (ENV['POSTGRESQL_DATABASE'] || 'p_development') %>
+  username: postgres
+  password: nga@database
+  timeout: 5000
+  host: localhost
+
+staging:
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false
+  database: <%= ENV['POSTGRESQL_DATABASE']%>
+  pool: <%= ENV['DATABASE_POOL_SIZE']%>
+  username: <%= ENV['POSTGRESQL_USERNAME']%>
+  password: <%= ENV['POSTGRESQL_PASSWORD']%>
+  host: localhost
+  port: 5432
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false
+  database: <%= ENV['POSTGRESQL_DATABASE']%>
+  pool: <%= ENV['DATABASE_POOL_SIZE']%>
+  username: <%= ENV['POSTGRESQL_USERNAME']%>
+  password: <%= ENV['POSTGRESQL_PASSWORD']%>
+  host: <%= ENV['POSTGRESQL_HOST']%>
+  port: <%= ENV['POSTGRESQL_PORT']%>

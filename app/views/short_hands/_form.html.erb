@@ -1,0 +1,23 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "editor" %>
+<% end %>
+
+<%= simple_form_for(shorthand) do |f| %>
+  <%= f.error_notification %>
+  
+  <div class="form-group">
+    <%= f.input :description, placeholder: "", input_html: {class: "form-control"}, required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :tags, input_html: { class: "form-control", data: { role: 'tagsinput' } }, required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :code, as: :ckeditor, required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.button :submit, name: "Submit", value: "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,65 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "search" %>
+<% end %>
+
+<% content_for :page_level_script do %>
+  <%= javascript_include_tag "search" %>
+<% end %>
+
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/" style="color:white;">
+        <strong><%= ENV['APP_NAME'] || t('title') %></strong>
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form id="search-form" action="/short_hands" class="navbar-form navbar-left">
+        <div class="form-group">
+          <%= text_field_tag 'facets[search]', pvalue(:search), id: 'search', class: "form-control search optional", placeholder: "Search ...", style: "width: 300px;" %>
+        </div>
+      </form>
+      <ul class="nav navbar-nav">
+        <li><%=link_to "All Shorthands", short_hands_path %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'New Shorthand', new_short_hand_path %></li>
+        <% unless user_signed_in? %>
+          <li>
+            <a href="#">Sign In With Google</a>
+          </li>
+        <% else %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <%= current_user.name %> <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <!-- <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li> -->
+            <li><%= link_to 'Logout', destroy_user_session_path, data: { method: "delete"} %></li>
+          </ul>
+        </li>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<%= render :partial => 'shared/perform_search', :locals => {:url => "/short_hands"} %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  window.reintialize("short_hands");
+});
+</script>

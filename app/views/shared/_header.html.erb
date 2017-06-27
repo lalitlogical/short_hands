@@ -1,0 +1,18 @@
+<% if controller_name == 'short_hands' && action_name == 'new' %>
+<div id="gist-pjax-container" class="gist-content-wrapper" data-pjax-container="">
+  <div class="gist-welcome gist-banner text-center">
+    <div class="container">
+      <h1>Instantly share code, notes, and snippets.</h1>
+    </div>
+  </div>
+</div>
+<% elsif controller_name == 'short_hands' && action_name == 'show' %>
+<div class="gist-detail-intro gist-banner gist-detail">
+  <div class="container">
+    <%= link_to 'Create a shorthand', new_short_hand_path, class: "btn btn-primary pull-right" %>
+    <p class="lead">
+      Instantly share code, notes, and snippets.
+    </p>
+  </div>
+</div>
+<% end %>

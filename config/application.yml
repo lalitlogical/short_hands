@@ -1,0 +1,5 @@
+# Add configuration values here, as shown below.
+
+POSTGRESQL_DATABASE: "pg_development"
+
+GOOGLE_ID: 

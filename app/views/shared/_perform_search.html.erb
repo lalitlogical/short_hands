@@ -1,0 +1,73 @@
+<script type="text/javascript">
+  window.performSearch = function(do_not_render_left_side) {
+    serialize_data = '?' + $('#search-form').serialize();
+    if (do_not_render_left_side) serialize_data += "&dnrls=true";
+    $.get('<%= url %>.js' + serialize_data)
+    .fail(function(jqXHR, textStatus, errorThrown){
+      if (jqXHR.status == 401) window.location.reload();
+    })
+
+    if (!do_not_render_left_side) {
+      last_path = '<%= url %>' + serialize_data;
+      window.history.pushState({urlPath:last_path}, null, last_path);
+    }
+  }
+
+  window.onpopstate = function(e) {
+    $.get('<%= url %>.js' + window.location.search.replace("dnrls=true",""))
+    .fail(function(jqXHR, textStatus, errorThrown){
+      if (jqXHR.status == 401) window.location.reload();
+    })
+  }
+
+  window.last_suggestion = '';
+  window.applySuggestion = function(ev, suggestion, do_not_render_left_side) {
+    if (window.last_suggestion != suggestion) {
+      window.last_suggestion = suggestion;
+      $("#search").val(suggestion);
+      $('#search-form').submit();
+      // performSearch(do_not_render_left_side);
+    }
+  }
+
+  $(document).ready(function(){
+    window.reintialize("<%= url %>");
+
+    $(document.body).on("change", "input[type='checkbox'], input[type='text'], select", function(e){
+      performSearch();
+    });
+
+    $(document.body).on('click', '.pagination a', function(e){
+      if (e.target.href.match(".js")) {
+        e.preventDefault();
+        $.get(e.target.href);
+        last_path = '<%= url %>' + "?" + e.target.href.split("?")[1];
+        window.history.pushState({urlPath:last_path}, null, last_path);
+      }
+    });
+
+    $(document.body).on('click', '#search-btn', function(e){
+      e.preventDefault();
+      performSearch();
+    });
+
+    $(document.body).on('click', '.clear-btn', function(e) {
+      e.preventDefault();
+      $("#search").val("");
+      $("#search-form select").val("");
+      $("input[type='checkbox']:checked").removeAttr('checked');
+      performSearch();
+    });
+
+    $(document.body).on('click', '.suggestion', function(e){
+      e.preventDefault();
+      $("#search").val($(e.target).attr('data-suggestion'));
+      performSearch();
+    });
+
+    $(document.body).on("mouseover", ".tt-suggestion", function () {
+      $('.tt-suggestion').removeClass('tt-cursor');
+      $(this).addClass('tt-cursor');
+    });
+  });
+</script>

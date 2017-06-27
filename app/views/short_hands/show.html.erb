@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+    <% if user_signed_in? %>
+    <div class="pull-right">
+      <%= link_to 'Edit', edit_short_hand_path(@shorthand) if @shorthand.owner?(current_user.try(:id)) %> |
+      <%= link_to 'Destroy', @shorthand, method: :delete, data: { confirm: 'Are you sure?' } if @shorthand.owner?(current_user.try(:id)) %>
+    </div>
+    <% end %>
+    <strong><%= @shorthand.description %> </strong>
+    <br>
+    <%= "#{time_ago_in_words(@shorthand.created_at)} ago" %>
+  </div>
+  <div class="panel-body">
+    <%= @shorthand.code.html_safe %>
+  </div>
+</div>
+
+<%= link_to 'Back', short_hands_path, class: "btn btn-primary" %>

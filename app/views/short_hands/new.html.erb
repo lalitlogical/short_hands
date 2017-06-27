@@ -1,0 +1,7 @@
+<% title "Create a new Short Hand" %>
+<%= render 'form', shorthand: @shorthand if user_signed_in? %>
+<% unless user_signed_in? %>
+  <center>
+    <a href="#" class="btn btn-primary"> Sign In with Google </a>
+  </center>
+<% end %>

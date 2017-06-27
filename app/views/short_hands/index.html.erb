@@ -1,0 +1,27 @@
+<% title "Short Hands" %>
+<h1>Short Hands</h1>
+
+<% @shorthands.each do |shorthand| %>
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+      <%= link_to shorthand.description, shorthand %>
+      <% if user_signed_in? %>
+      <div class="pull-right">
+        <%= link_to 'Edit', edit_short_hand_path(shorthand) if shorthand.owner?(current_user.try(:id)) %> |
+        <%= link_to 'Destroy', shorthand, method: :delete, data: { confirm: 'Are you sure?' } if shorthand.owner?(current_user.try(:id)) %>
+      </div>
+      <% end %>
+    </div>
+    <div class="panel-body">
+      <% read_more = link_to "...Read more", shorthand %>
+      <%= truncate_html(shorthand.code.html_safe, length: 300, word_boundary: false, omission: "<br><br> #{read_more}")%>
+    </div>
+  </div>
+<% end %>
+
+<div class="pages col-md-12 col-xs-12">
+	<center><%#= paginate @shorthands, window: 2 %></center>
+</div>
+
+<%= link_to 'Create a new shorthand', new_short_hand_path, class: "btn btn-primary" %>
