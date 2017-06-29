@@ -21,4 +21,17 @@ module ApplicationHelper
     content_for :title, "#{page_title.to_s} | #{t('title')}"
   end
 
+  def language_options
+    (options ||= []) << ["Ruby", "ruby"]
+    options << ["Java", "java"]
+    options << ["Objective C", "objective_c"]
+    options << ["Javascript", "javascript"]
+    options << ["Swift", "swift"]
+    options << ["C#", "c#"]
+    options << ["python", "python"]
+    options << ["PHP", "php"]
+    options << ["C++", "c++"]
+    options << ["SQL", "sql"]
+  end
+
 end

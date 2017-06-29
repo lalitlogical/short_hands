@@ -11,8 +11,9 @@ class ShortHand < ApplicationRecord
   field :description, type: String
   field :tags, type: String
   field :code, type: String
+  field :language, type: String
 
-  validates :description, :tags, :code, presence: true
+  validates :description, :tags, :language, :code, presence: true
 
   def owner? id
     user_id == id

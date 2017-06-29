@@ -75,6 +75,6 @@ class ShortHandsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gist_params
-      params.require(:short_hand).permit(:description, :tags, :code)
+      params.require(:short_hand).permit(:description, :tags, :code, :language)
     end
 end

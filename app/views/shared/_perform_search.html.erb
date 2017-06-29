@@ -33,7 +33,7 @@
   $(document).ready(function(){
     window.reintialize("<%= url %>");
 
-    $(document.body).on("change", "input[type='checkbox'], input[type='text'], select", function(e){
+    $(document.body).on("change", "input[type='text']", function(e){
       performSearch();
     });
 
