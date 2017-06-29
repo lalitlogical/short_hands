@@ -21,7 +21,6 @@
 //= require buttons.html5.min
 //= require buttons.print.min
 //= require bootstrap/dropdown
-//= require_tree .
 
 (function(){
 
