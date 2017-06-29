@@ -9,7 +9,16 @@
 <% elsif controller_name == 'short_hands' && action_name == 'show' %>
 <div class="gist-detail-intro gist-banner gist-detail">
   <div class="container">
-    <%= link_to 'Create a shorthand', new_short_hand_path, class: "btn btn-primary pull-right" %>
+    <%= link_to 'Create a new shorthand', new_short_hand_path, class: "btn btn-primary pull-right" %>
+    <p class="lead">
+      Instantly share code, notes, and snippets.
+    </p>
+  </div>
+</div>
+<% elsif controller_name == 'short_hands' && action_name == 'index' %>
+<div class="gist-detail-intro gist-banner gist-detail">
+  <div class="container">
+    <%= link_to 'Create a new shorthand', new_short_hand_path, class: "btn btn-primary pull-right" %>
     <p class="lead">
       Instantly share code, notes, and snippets.
     </p>

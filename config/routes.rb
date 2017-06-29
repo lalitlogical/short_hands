@@ -17,5 +17,11 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'short_hands#new'
+  devise_scope :user do
+    authenticated  do
+      root to: "short_hands#new", as: 'authenticated_root'
+    end
+  end
+
+  root to: "users/sessions#new"
 end

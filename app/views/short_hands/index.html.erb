@@ -1,6 +1,4 @@
 <% title "Short Hands" %>
-<h1>Short Hands</h1>
-
 <% @shorthands.each do |shorthand| %>
   <div class="panel panel-default">
     <!-- Default panel contents -->
@@ -8,8 +6,8 @@
       <%= link_to shorthand.description, shorthand %>
       <% if user_signed_in? %>
       <div class="pull-right">
-        <%= link_to 'Edit', edit_short_hand_path(shorthand) if shorthand.owner?(current_user.try(:id)) %> |
-        <%= link_to 'Destroy', shorthand, method: :delete, data: { confirm: 'Are you sure?' } if shorthand.owner?(current_user.try(:id)) %>
+        <%= link_to 'Edit', edit_short_hand_path(shorthand) if shorthand.owner?(current_user.try(:id)) %>
+        <%= link_to '| Destroy', shorthand, method: :delete, data: { confirm: 'Are you sure?' } if shorthand.owner?(current_user.try(:id)) %>
       </div>
       <% end %>
     </div>
