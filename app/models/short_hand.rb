@@ -24,6 +24,7 @@ class ShortHand < ApplicationRecord
       description: description,
       tags: tags,
       code: code,
+      language: language,
       updated_at: updated_at
     }
   end
@@ -41,6 +42,7 @@ class ShortHand < ApplicationRecord
         order[fparam[:sort]] = :desc
       end
 
+      where[:language] = fparam[:language] if fparam[:language].present?
       operator = "and" if fparam[:whole].present?
     end
 

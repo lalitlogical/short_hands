@@ -24,8 +24,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <form id="search-form" action="/short_hands" class="navbar-form navbar-left">
-        <div class="form-group">
-          <%= text_field_tag 'facets[search]', pvalue(:search), id: 'search', class: "form-control search optional", placeholder: "Search ...", style: "width: 300px;" %>
+        <div class="form-group" style="width: 300px; position: relative;">
+          <%= select_tag 'facets[language]', options_for_select(language_options(true)), class: "form-control language" %>
+          <%= text_field_tag 'facets[search]', pvalue(:search), id: 'search', class: "form-control search optional", placeholder: "Search ...", style: "width: 202px;" %>
         </div>
       </form>
       <ul class="nav navbar-nav">

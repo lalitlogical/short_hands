@@ -34,3 +34,15 @@
   margin-top: -1px;
   border: 1px solid #c2cad8;
 }
+
+.language {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+}
+
+.language,
+.navbar-form .form-control {
+  border-radius: 0;
+  -webkit-appearance: none;
+}
