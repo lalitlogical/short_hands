@@ -65,11 +65,11 @@ development:
 
         # The time to wait, in seconds, in the connection pool for a connection
         # to be checked in before timing out. (default: 5)
-        # wait_queue_timeout: 5
+        wait_queue_timeout: 15
 
         # The time to wait to establish a connection before timing out, in seconds.
         # (default: 5)
-        # connect_timeout: 5
+        connect_timeout: 15
 
         # The timeout to wait to execute operations on a socket before raising an error.
         # (default: 5)
@@ -115,7 +115,7 @@ development:
 
     # Raise an error when performing a #find and the document is not found.
     # (default: true)
-    raise_not_found_error: false
+    raise_not_found_error: true
 
     # Raise an error when defining a scope with the same name as an
     # existing method. (default: false)
@@ -125,7 +125,7 @@ development:
     # use_activesupport_time_zone: true
 
     # Ensure all times are UTC in the app side. (default: false)
-    # use_utc: false
+    use_utc: false
 
     # Set the Mongoid and Ruby driver log levels when not in a Rails
     # environment. The Mongoid logger will be set to the Rails logger
@@ -134,7 +134,7 @@ development:
 test:
   clients:
     default:
-      database: sales_automation_test
+      database: shorthand_test
       hosts:
         - localhost:27017
       options:
@@ -148,3 +148,17 @@ production:
     # Defines the default client. (required)
     default:
       uri: <%= ENV['MONGODB_URI'] %>
+      options:
+        # The maximum number of connections in the connection pool. (default: 5)
+        max_pool_size: 25
+
+        # The minimum number of connections in the connection pool. (default: 1)
+        min_pool_size: 1
+
+        # The time to wait, in seconds, in the connection pool for a connection
+        # to be checked in before timing out. (default: 5)
+        wait_queue_timeout: 15
+
+        # The time to wait to establish a connection before timing out, in seconds.
+        # (default: 5)
+        connect_timeout: 15
